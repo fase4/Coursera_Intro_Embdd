@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
+ * Copyright (C) 2020 by Cesar Oliveros - Universidad de Carabobo
  *
  * Redistribution, modification or use of this software in source or binary
  * forms is permitted as long as the files maintain this copyright. Users are 
@@ -9,7 +9,7 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
+ * @file status.c
  * @brief <Add Brief Description Here >
  *
  * <Add Extended Description Here>
@@ -26,6 +26,34 @@
 
 /* Size of the Data Set */
 #define SIZE (40)
+
+unsigned int print_statistics(unsigned char * ptr,unsigned int size)
+{
+}
+
+unsigned int print_array(unsigned char * ptr,unsigned int size)
+{
+}
+
+unsigned int find_median(unsigned char * ptr,unsigned int size)
+{
+}
+
+unsigned int find_mean(unsigned char * ptr,unsigned int size)
+{
+}
+
+unsigned int find_maximum(unsigned char * ptr,unsigned int size)
+{
+}
+
+unsigned int find_minimum(unsigned char * ptr,unsigned int size)
+{
+}
+
+unsigned int sort_array()
+{
+}
 
 void main() {
 
