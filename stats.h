@@ -10,7 +10,7 @@
  *****************************************************************************/
 /**
  * @file <stats.h>
- * @brief <Header file of status.c>
+ * @brief Header file of status.c
  *
  * <Add Extended Description Here>
  *
@@ -33,7 +33,7 @@
  *
  * @return none
  */
-unsigned int print_statistics(unsigned char * ptr,unsigned int size);
+void print_statistics(unsigned int min, unsigned int max, unsigned int mean, unsigned int median);
 
 /**
  * @brief Given an array of data and a length, prints the array to the screen.
