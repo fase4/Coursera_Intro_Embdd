@@ -103,8 +103,8 @@ unsigned int find_minimum(unsigned char * ptr,unsigned int size);
  * @param ptr pointer to an n-element array
  * @param size size of the array
  *
- * @return 1 if done, 0 if some error.
+ * @return none.
  */
-unsigned int sort_array(unsigned char * ptr,unsigned int size);
+void sort_array(unsigned char * ptr,unsigned int size);
 
 #endif /* __STATS_H__ */

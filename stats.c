@@ -37,7 +37,9 @@ void print_array(unsigned char * ptr,unsigned int size)
     printf("Array:");
     for(int i=0;i<size;i++)
     {
-        printf(" %d,",ptr[i]);
+        if     (ptr[i] > 99)  printf(" %d,",ptr[i]);
+        else if(ptr[i] >  9) printf("  %d,",ptr[i]);
+        else printf("   %d,",ptr[i]);
         if(((i + 1) % 8 == 0) && (i+1 != size)) printf("\n      ");
     }
     printf("\b.\n");
@@ -92,22 +94,25 @@ unsigned int find_minimum(unsigned char * ptr,unsigned int size)
     return tmp;
 }
 
-unsigned int sort_array(unsigned char * ptr, unsigned int size)
+void sort_array(unsigned char * ptr, unsigned int size)
 {
-    unsigned int max, tmpsize;
-    unsigned char array[size];
-    tmpsize = size;
-    for(int i=0;i<size;i++)
+    unsigned int tmp;
+    unsigned char * tmpptr;
+    tmpptr = ptr;
+    for(int i=0; i < (size - 1); i++)
     {
-        max = find_maximum(ptr++,tmpsize--);
-        array[i]=max;
+        for(int j=0; j < (size - 1); j++)
+        {
+            if(*ptr < *(ptr + 1))
+            {
+                tmp = *ptr;
+                *ptr = *(ptr + 1);
+                *(ptr + 1) = tmp;
+            }
+            ptr++;
+        }
+        ptr = tmpptr;
     }
-    if(sizeof(array) == size)
-    {
-        ptr=&array[0];
-        return 1;
-    }
-    else return 0;
 }
 
 void main() {
