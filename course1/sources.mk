@@ -11,19 +11,21 @@
 
 # Add your Source files to this variable
 ifeq ($(PLATFORM),HOST)
-  SRCS = ./main.c ./memory.c
+  SRCS = ./src/main.c ./src/memory.c ./src/course1.c \
+         ./src/data.c ./src/stats.c
 else
-  SRCS = ./main.c ./memory.c \
-          ./startup_msp432p401r_gcc.c \
-          ./system_msp432p401r.c \
-          ./interrupts_msp432p401r_gcc.c
+  SRCS = ./src/main.c ./src/memory.c ./src/course1.c \
+         ./src/data.c ./src/stats.c \
+         ./src/startup_msp432p401r_gcc.c \
+         ./src/system_msp432p401r.c \
+         ./src/interrupts_msp432p401r_gcc.c
 endif
 
 # Add your include paths to this variable
 ifeq ($(PLATFORM),HOST)
-  INCLUDES = -I../include/common
+  INCLUDES = -I./include/common
 else
-  INCLUDES = -I../include/common \
-             -I../include/CMSIS  \
-             -I../include/msp432
+  INCLUDES = -I./include/common \
+             -I./include/CMSIS  \
+             -I./include/msp432
 endif

@@ -21,7 +21,7 @@
 #ifndef __STATS_H__
 #define __STATS_H__
 
-/* Add Your Declarations and Function Comments here */ 
+/* Add Your Declarations and Function Comments here */
 
 /**
  * @brief A function that prints the statistics of an array including minimum, maximum, mean, and median.

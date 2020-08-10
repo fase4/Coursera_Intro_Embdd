@@ -12,14 +12,19 @@
  * @file data.h
  * @brief This file should do some very basic data manipulation. 
  *
- * 
- *
  * @author Cesar Oliveros
  * @date August 7 2020
  *
  */
 #ifndef __DATA__
 #define __DATA__
+
+#include <stdint.h>
+
+#define BASE_2 2
+#define BASE_8 8
+#define BASE_10 10
+#define BASE_16 16
 
 /**
  * @brief 

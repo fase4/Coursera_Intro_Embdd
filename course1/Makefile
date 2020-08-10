@@ -29,12 +29,14 @@
 #
 # Platform Overrides:
 #      PLATFORM - Plataforma destino (HOST o MSP432)
+#      CSWITCH - Compile time switch for execute course1() in main.c
 #
 #------------------------------------------------------------------------------
 include sources.mk
 
 # Platform Overrides
 PLATFORM = MSP432
+CSWITCH =
 
 # Architectures Specific Flags
 LINKER_FILE = msp432p401r.lds
@@ -45,7 +47,11 @@ ARCHM = armv7e-m
 FLOAT = hard
 FPU = fpv4-sp-d16
 FLAGS = -Wall -Werror -g -O0 -std=c99
-CPPFLAGS = -D$(PLATFORM)
+ifeq ($(CSWITCH),COURSE1)
+  CPPFLAGS = -D$(PLATFORM) -DVERBOSE -D$(CSWITCH)
+else
+  CPPFLAGS = -D$(PLATFORM) -DVERBOSE
+endif
 
 # Compiler Flags and Defines
 ifeq ($(PLATFORM),HOST)
@@ -55,12 +61,12 @@ ifeq ($(PLATFORM),HOST)
 else
   CC = arm-none-eabi-gcc
   LD = arm-none-eabi-ld
-  LDFLAGS = -Wl,-Map=$(TARGET).map -T ../$(LINKER_FILE)
+  LDFLAGS = -Wl,-Map=$(TARGET).map -T $(LINKER_FILE)
   CFLAGS = -mcpu=$(CPU) -m$(ARCH) --specs=$(SPECS) -Wall \
            -march=$(ARCHM) -mfloat-abi=$(FLOAT) \
            -mfpu=$(FPU) $(FLAGS)
 endif
-TARGET = c1m2
+TARGET = course
 
 OBJS = $(SRCS:.c=.o)
 OBJSI = $(SRCS:.c=.i)
@@ -72,7 +78,7 @@ OBJSS = $(SRCS:.c=.asm)
 %.i : %.c
 	$(CC) -E $< $(CFLAGS) $(CPPFLAGS) $(INCLUDES) -o $@
 
-$(TARGET).asm: $(TARGET).out
+$(TARGET).asm: $(TARGET).outB
 ifeq ($(PLATFORM),HOST)
 	objdump --disassemble $< > $@
 else
@@ -94,7 +100,7 @@ build: all
 all: $(TARGET).out
 
 $(TARGET).out: $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) $(INCLUDES) -o $@
+	$(CC) $(OBJS) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(INCLUDES) -o $@
 ifeq ($(PLATFORM),HOST)
 	size -Bx $(OBJS) $(TARGET).out
 else

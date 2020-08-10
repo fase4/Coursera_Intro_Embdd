@@ -38,7 +38,7 @@ int8_t test_data1() {
     return TEST_ERROR;
   }
 
-  digits = my_itoa( num, ptr, BASE_16);   
+  digits = my_itoa( num, ptr, BASE_16);
   value = my_atoi( ptr, digits, BASE_16);
   #ifdef VERBOSE
   PRINTF("  Initial number: %d\n", num);
@@ -117,7 +117,6 @@ int8_t test_memmove1() {
       ret = TEST_ERROR;
     }
   }
-
   free_words( (uint32_t*)set );
   return ret;
 }
@@ -153,6 +152,7 @@ int8_t test_memmove2() {
     if (set[i + 8] != i)
     {
       ret = TEST_ERROR;
+      PRINTF("\nerror en test2 i = %d",i);
     }
   }
 
@@ -192,6 +192,7 @@ int8_t test_memmove3() {
     if (set[i] != (i + 8))
     {
       ret = TEST_ERROR;
+      PRINTF("\nerror en test2 i = %d",i);
     }
   }
 
@@ -336,7 +337,7 @@ void course1(void)
   results[6] = test_memset();
   results[7] = test_reverse();
 
-  for ( i = 0; i < TESTCOUNT; i++) 
+  for ( i = 0; i < TESTCOUNT; i++)
   {
     failed += results[i];
   }

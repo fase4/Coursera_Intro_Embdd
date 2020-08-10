@@ -21,7 +21,6 @@
 
 
 #include "platform.h"
-#include <stdio.h>
 #include "stats.h"
 
 /* Size of the Data Set */
@@ -37,10 +36,11 @@ void print_array(unsigned char * ptr,unsigned int size)
     PRINTF("Array:");
     for(int i=0;i<size;i++)
     {
-        if     (ptr[i] > 99)  printf(" %d,",ptr[i]);
-        else if(ptr[i] >  9) printf("  %d,",ptr[i]);
-        else printf("   %d,",ptr[i]);
-        if(((i + 1) % 8 == 0) && (i+1 != size)) printf("\n      ");
+        if     (ptr[i] > 99)  PRINTF(" %d,",ptr[i]);
+        else if(ptr[i] >  9) PRINTF("  %d,",ptr[i]);
+        else                PRINTF("   %d,",ptr[i]);
+        if(((i + 1) % 8 == 0) && (i+1 != size))
+                   PRINTF("\n      ");
     }
     PRINTF("\b.\n");
 }
@@ -115,7 +115,7 @@ void sort_array(unsigned char * ptr, unsigned int size)
     }
 }
 
-void main() {
+void stats() {
 
     unsigned int min, max, mean, median;
     unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
@@ -127,12 +127,12 @@ void main() {
     max = find_maximum(test, SIZE);
     mean = find_mean(test, SIZE);
     median=find_median(test, SIZE);
-    
+
     /* debug printing as requested in makefile */
     #ifdef VERBOSE
         print_array(test, SIZE);
     #endif
-    
-    print_tatistics(min,max,mean,median);
-} /* End main */
+
+    print_statistics(min,max,mean,median);
+} /* End stats.c */
 
